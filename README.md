@@ -32,13 +32,13 @@ nft_name → NFT label (e.g., CryptoPunk #1139)
 
 🎯 Objectives
 
-Transaction Overview
+Transaction Overview :
 
 Count total sales
 
 Find top 5 sales (by USD price)
 
-Price Analytics
+Price Analytics:
 
 Compute moving average of USD prices
 
@@ -46,7 +46,7 @@ Average NFT price per collection
 
 Histogram of ETH price ranges
 
-Temporal Trends
+Temporal Trends:
 
 Sales per day of the week
 
@@ -54,7 +54,7 @@ Monthly sales volume in USD
 
 Most sold NFT each month/year
 
-Wallet & Transaction Insights
+Wallet & Transaction Insights:
 
 Track wallet activity (0x1919...)
 
@@ -62,7 +62,7 @@ Create custom purchase views
 
 Highest vs. lowest NFT prices
 
-Advanced Analysis
+Advanced Analysis:
 
 Sale summaries in human-readable text
 
