@@ -105,3 +105,13 @@ FROM daily_avg
 WHERE usd_price >= 0.1 * daily_avg_price
 GROUP BY date
 ORDER BY date;
+
+
+
+📈 Visualizations
+
+Histogram of ETH Prices (rounded to nearest 100)
+
+Monthly Sales Volume Trend
+
+Top 5 Most Expensive Sales
