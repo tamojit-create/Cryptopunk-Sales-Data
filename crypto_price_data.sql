@@ -20,7 +20,10 @@ select name , avg(usd_price) as average_price from cryptopunk_sales group by nam
 select dayname(event_date)as day_of_week , count(*)as number_of_sales , avg(eth_price) as averge_eth_price from cryptopunk_sales
 group by day_of_week order by number_of_sales asc ;
 
+
+
 #{sales_summary}:
+
 SELECT 
     CONCAT(
         name, 
@@ -30,19 +33,33 @@ SELECT
         ' on ', event_date
     ) AS summary
     FROM cryptopunk_sales order by round(usd_price,-3)desc ;
+
+
     
-#{view creation for purchase by wallet 0*1919db...........}:
+#{view creation for purchase by wallet 0*1919db...........} :
+
 CREATE VIEW 1919_purchases AS
 SELECT *
 FROM cryptopunk_sales
 WHERE buyer_address = '0x1919db36ca2fa2e15f9000fd9cdc2edcf863e685';
 
+
+
 #{histogram of eth price}/{eth price range wise number of transction/sales}:
+
 SELECT 
     ROUND(eth_price, -2) AS eth_price_range,
     COUNT(*) AS transactions
 FROM cryptopunk_sales
 GROUP BY eth_price_range
 ORDER BY eth_price_range;
+
+
+
+#{highet and lowest price per nft}:
+
+select name, max(usd_price) as price, 'highest' as status from cryptopunk_sales group by name 
+union select name, min(usd_price) as price, 'lowest' as status from cryptopunk_sales group by name
+order by name , status asc ;
 
 
