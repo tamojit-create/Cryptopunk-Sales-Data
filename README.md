@@ -127,3 +127,16 @@ Histogram of ETH Prices (rounded to nearest 100)
 Monthly Sales Volume Trend
 
 Top 5 Most Expensive Sales
+
+
+💡 Insights
+
+$22B+ spent on NFTs globally in 2021; CryptoPunks contributed a significant portion.
+
+NFT prices show extreme volatility, with large outliers.
+
+Wallet activity can be traced precisely, since all transactions are on the blockchain.
+
+Mondays & Tuesdays showed fewer sales, while weekends had spikes.
+
+Estimated average price (after filtering outliers) gives a more realistic view of NFT market trends.
