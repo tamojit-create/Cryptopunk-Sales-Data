@@ -70,12 +70,12 @@ Estimated average daily value (excluding outliers)
 
 📜 Key SQL Queries
 
-Total Sales
+Total Sales:
 
 SELECT COUNT(*) AS total_sales FROM cryptopunks_sales;
 
 
-Top 5 Expensive Transactions
+Top 5 Expensive Transactions:
 
 SELECT nft_name, eth_price, usd_price, date
 FROM cryptopunks_sales
@@ -83,7 +83,7 @@ ORDER BY usd_price DESC
 LIMIT 5;
 
 
-Moving Average (Last 50 Transactions)
+Moving Average (Last 50 Transactions):
 
 SELECT transaction_hash AS event,
        usd_price,
@@ -91,7 +91,7 @@ SELECT transaction_hash AS event,
 FROM cryptopunks_sales;
 
 
-Estimated Average Value (Outlier Removal)
+Estimated Average Value (Outlier Removal):
 
 -- Part A: Daily average prices
 CREATE TEMPORARY TABLE daily_avg AS
@@ -105,6 +105,18 @@ FROM daily_avg
 WHERE usd_price >= 0.1 * daily_avg_price
 GROUP BY date
 ORDER BY date;
+
+
+nft that sold the most on each year-month combination :
+
+create temporary table monthly_sale as
+(select name , date_format(event_date, '%Y-%m')as y_m,count(*) as sales_count ,max(usd_price) as  max_price from cryptopunk_sales group by name, y_m);
+create temporary table ranked_sale as
+select name ,y_m,max_price,sales_count ,dense_rank()over(partition by y_m order by sales_count desc) as rn from monthly_sale;
+
+select y_m , name , sales_count, max_price from ranked_sale
+where rn = 1
+order by y_m asc;
 
 
 
