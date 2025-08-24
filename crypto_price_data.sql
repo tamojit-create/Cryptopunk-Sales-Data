@@ -63,3 +63,15 @@ union select name, min(usd_price) as price, 'lowest' as status from cryptopunk_s
 order by name , status asc ;
 
 
+# {nft that sold the most on each year-month combination} :
+
+create temporary table monthly_sale as
+(select name , date_format(event_date, '%Y-%m')as y_m,count(*) as sales_count ,max(usd_price) as  max_price from cryptopunk_sales group by name, y_m);
+create temporary table ranked_sale as
+select name ,y_m,max_price,sales_count ,dense_rank()over(partition by y_m order by sales_count desc) as rn from monthly_sale;
+
+select y_m , name , sales_count, max_price from ranked_sale
+where rn = 1
+order by y_m asc;
+
+
