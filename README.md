@@ -119,6 +119,19 @@ where rn = 1
 order by y_m asc;
 
 
+# monthly sales volume ( sum of sales rounded to nearest hundred ):
+
+SELECT DATE_FORMAT(event_date, '%Y-%m') AS yearmonth, ROUND(SUM(usd_price), -2) AS total_volume 
+FROM cryptopunk_sales 
+GROUP BY yearmonth 
+order by  total_volume desc;
+
+# transaction count for a specific wallet :
+
+SELECT COUNT(*) AS transaction_count 
+FROM cryptopunk_sales 
+WHERE buyer_address = '0x1919db36ca2fa2e15f9000fd9cdc2edcf863e685';
+
 
 📈 Visualizations
 
@@ -127,7 +140,6 @@ Histogram of ETH Prices (rounded to nearest 100)
 Monthly Sales Volume Trend
 
 Top 5 Most Expensive Sales
-
 
 💡 Insights
 
@@ -140,3 +152,7 @@ Wallet activity can be traced precisely, since all transactions are on the block
 Mondays & Tuesdays showed fewer sales, while weekends had spikes.
 
 Estimated average price (after filtering outliers) gives a more realistic view of NFT market trends.
+
+🚀 How to Run
+
+
