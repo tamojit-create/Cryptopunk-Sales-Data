@@ -75,3 +75,33 @@ where rn = 1
 order by y_m asc;
 
 
+ # {monthly sales volume ( sum of sales rounded to nearest hundred )}:
+
+SELECT DATE_FORMAT(event_date, '%Y-%m') AS yearmonth, ROUND(SUM(usd_price), -2) AS total_volume 
+FROM cryptopunk_sales 
+GROUP BY yearmonth 
+order by  total_volume desc;
+
+# {transaction count for a specific wallet} :
+
+SELECT COUNT(*) AS transaction_count 
+FROM cryptopunk_sales 
+WHERE buyer_address = '0x1919db36ca2fa2e15f9000fd9cdc2edcf863e685';
+
+
+# {Estimated average value calculator} - 
+
+#Part A: [Create temporary table with daily average]:
+
+
+SELECT event_date, usd_price, AVG(usd_price) OVER (PARTITION BY event_date) AS daily_avg 
+FROM cryptopunk_sales;
+
+#Part B: {Filter out sales below 10% of daily average and calculate new average} : //{ where usd_price >= 0.1* daily _avg }//
+
+SELECT event_date, AVG(usd_price) AS estimated_avg_value 
+FROM daily_avg_price 
+WHERE usd_price >= 0.1 * daily_avg 
+GROUP BY event_date;
+
+
