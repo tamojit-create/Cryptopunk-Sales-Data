@@ -154,5 +154,11 @@ Mondays & Tuesdays showed fewer sales, while weekends had spikes.
 Estimated average price (after filtering outliers) gives a more realistic view of NFT market trends.
 
 🚀 How to Run
+git clone https://github.com/tamojit-create/Cryptopunk-Sales-Data.git
+cd cryptopunks-analysis
 
+LOAD DATA INFILE 'cryptopunkdata.csv'
+INTO TABLE cryptopunk_sales
+FIELDS TERMINATED BY ','
+IGNORE 1 ROWS;
 
