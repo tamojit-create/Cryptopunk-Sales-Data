@@ -162,3 +162,5 @@ INTO TABLE cryptopunk_sales
 FIELDS TERMINATED BY ','
 IGNORE 1 ROWS;
 
+run queries from crypto_price_data.sql
+
