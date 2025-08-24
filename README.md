@@ -111,6 +111,8 @@ nft that sold the most on each year-month combination :
 
 create temporary table monthly_sale as
 (select name , date_format(event_date, '%Y-%m')as y_m,count(*) as sales_count ,max(usd_price) as  max_price from cryptopunk_sales group by name, y_m);
+
+
 create temporary table ranked_sale as
 select name ,y_m,max_price,sales_count ,dense_rank()over(partition by y_m order by sales_count desc) as rn from monthly_sale;
 
